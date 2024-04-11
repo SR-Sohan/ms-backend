@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Authcontroller;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,5 +28,18 @@ Route::get('/logout',[Authcontroller::class,'UserLogOut']);
 
 
 Route::prefix('admin')->middleware('verifytoken')->group(function () {
+
+
     Route::get('/', [DashboardController::class,'page']);
+
+
+    // Blog Route
+    Route::get('blog', [BlogController::class,'page']);
+    Route::get('blog-list', [BlogController::class,'blogList']);
+    Route::get('blog-by-id/{id}', [BlogController::class,'blogById']);
+    Route::post('blog-create-update', [BlogController::class,'blogCreateUpdate']);
+    Route::post("blog-delete",[BlogController::class,"blogDelete"]);
+
+
+
 });

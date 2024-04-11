@@ -8,7 +8,7 @@
                     Dashboard
                 </a>
                 <div class="sb-sidenav-menu-heading">Menu</div>
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{{url('/admin/blog')}}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Blog
                 </a>
