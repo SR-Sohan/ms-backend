@@ -9,23 +9,23 @@
                 </a>
                 <div class="sb-sidenav-menu-heading">Menu</div>
                 <a class="nav-link" href="{{url('/admin/blog')}}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-blog"></i></div>
                     Blog
                 </a>
-                <a class="nav-link" href="index.html">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                <a class="nav-link" href="{{url('/admin/about')}}">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-person"></i></div>
                     About
                 </a>
                 <a class="nav-link" href="index.html">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-shield"></i></div>
                     Projects
                 </a>
                 <a class="nav-link" href="index.html">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <div class="sb-nav-link-icon"><i class="fa-regular fa-address-book"></i></div>
                     Contact
                 </a>
-                <a class="nav-link" href="index.html">
-                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                <a class="nav-link" href="{{url('/admin/social')}}">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-share-nodes"></i></div>
                     Social
                 </a>
         </div>

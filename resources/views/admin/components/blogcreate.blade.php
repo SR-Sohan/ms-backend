@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade modal-lg" id="blogModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade modal-xl" id="blogModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
@@ -38,7 +38,7 @@
 
     $(document).ready(function() {
     $('#description').summernote({
-        height: 400,
+        height: 550,
         toolbar: [
             
                 ['style', ['style']],

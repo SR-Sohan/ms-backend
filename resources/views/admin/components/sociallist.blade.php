@@ -1,10 +1,9 @@
 <table id="tableData" class="mt-5 pt-5">
     <thead>
         <tr>
-            <th>Sl</th>
-            <th>Title</th>
-            <th>Image</th>
-            
+            <th>SL</th>
+            <th>Icon</th>
+            <th>Link</th>
             {{-- <th>Description</th> --}}
             <th>Action</th>
         </tr>
@@ -24,7 +23,7 @@
         let tableList = $("#tableList")
 
         showLoader()
-        let res = await axios.get("/admin/blog-list")
+        let res = await axios.get("/admin/social-list")
         hideLoader();
     
         if(res.status === 200 && res.data['status'] === "success"){
@@ -33,16 +32,14 @@
             tableList.empty()
 
             let count = 1;
-
             res.data["data"].forEach(item => {
                 let row = `<tr>
-                    <td>${count}</td>
-                    <td>${item.title}</td>
-                        <td><img class="w-25" src="{{asset('storage/images/blog/${item.thumbnail}')}}"/></td>
-                        
+                        <td>${count}</td>
+                        <td><i class="fa-brands fa-${item.social}"></i></td>
+                        <td>${item.link}</td>
                         <td>
-                            <button data-id="${item.id}" data-path="${item.image}"  class="btn btn-sm btn-outline-success editBtn">Edit</button>
-                            <button data-id="${item.id}" data-path="${item.image}" class="btn btn-sm btn-outline-danger deleteBtn">Delete</button>
+                            <button data-id="${item.id}"   class="btn btn-sm btn-outline-success editBtn">Edit</button>
+                            <button data-id="${item.id}"  class="btn btn-sm btn-outline-danger deleteBtn">Delete</button>
                         </td>
                     </tr>`
                     count++;
@@ -63,22 +60,17 @@
     // Edit Item
     $("#tableList").on("click",".editBtn",async function(){
         let id = $(this).data("id")
-        let path = $(this).data("path")
 
         showLoader();
-        let res = await axios.get(`/admin/blog-by-id/${id}`)
+        let res = await axios.get(`/admin/social-by-id/${id}`)
         hideLoader();
         if(res.status === 200){
-            $("#blog_id").val(res.data["id"])
-            $("#file_path").val(res.data["thumbnail"])
-            $("#title").val(res.data["title"])
-            // $("#description").val(res.data["description"])
-            $('#description').summernote('code', res.data["description"]);
-            $("#preview").attr("src", '{{ asset("storage/images/blog") }}' + '/' + res.data['thumbnail']);
-            console.log(res.data["description"]);
-            $("#submitBtn").html("Update Blog")
+            $("#social_id").val(res.data["id"])
+            $("#social").val(res.data["social"])
+            $("#link").val(res.data["link"])
+            $("#submitBtn").html("Update Social")
 
-            $("#blogModal").modal("show")
+            $("#socialModal").modal("show")
         }else{
             errorToast("Something is wrong")
         }
@@ -87,12 +79,11 @@
     // Delete item
     $("#tableList").on("click",".deleteBtn",async function(){
         let id = $(this).data("id")
-        let path = $(this).data("path")
         let tr = $(this).parent().parent();
       
         if(confirm("Are you want to Delete?")){
           
-            let res = await axios.post("/admin/blog-delete",{id: id,path: path})
+            let res = await axios.post("/admin/social-delete",{id: id})
 
             if(res.status === 200 && res.data['status'] === "success"){
                 // tr.remove().draw();;

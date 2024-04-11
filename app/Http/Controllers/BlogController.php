@@ -42,6 +42,39 @@ class BlogController extends Controller
 
         if($blogId){
 
+            if($request->hasFile("image")){
+
+                // storage image
+                $updateImageName = time()."_".$userID.'.'.$image->getClientOriginalExtension();            
+                $image->storeAs('public/images/blog/', $updateImageName);
+
+                // Delete image
+                $imagePath = 'public/images/blog/'.$filePath;        
+                Storage::delete($imagePath);
+
+                Blog::where("id","=",$blogId)->update([
+                    "title" => $title,
+                    "thumbnail" => $updateImageName,
+                    "description" => $description,
+                ]);
+
+                return response()->json([
+                    "status" => "success",
+                    "message" => "Blog Update Successfully",
+                ]);
+
+            }else{
+                Blog::where("id","=",$blogId)->update([
+                    "title" => $title,
+                    "description" => $description,
+                ]);
+                return response()->json([
+                    "status" => "success",
+                    "message" => "Blog Update Successfully",
+                ]);
+            }
+
+
 
         }else{
 

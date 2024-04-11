@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Authcontroller;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SocialController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +41,19 @@ Route::prefix('admin')->middleware('verifytoken')->group(function () {
     Route::get('blog-by-id/{id}', [BlogController::class,'blogById']);
     Route::post('blog-create-update', [BlogController::class,'blogCreateUpdate']);
     Route::post("blog-delete",[BlogController::class,"blogDelete"]);
+
+
+    // About Route
+    Route::get('about',[AboutController::class,'page']);
+
+
+
+    // Social Route
+    Route::get('social',[SocialController::class,'page']);
+    Route::get('social-list',[SocialController::class,'socialList']);
+    Route::get('social-by-id/{id}',[SocialController::class,'socialById']);
+    Route::post('social-create-update',[SocialController::class,'socialCreateUpdate']);
+    Route::post('social-delete',[SocialController::class,'socialDelete']);
 
 
 
