@@ -22,8 +22,10 @@ use Illuminate\Support\Facades\Route;
 
 // Auth Routes
 Route::get('/login',[Authcontroller::class,'page']);
+Route::post('/user-login',[Authcontroller::class,'UserLogin']);
+Route::get('/logout',[Authcontroller::class,'UserLogOut']);
 
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('verifytoken')->group(function () {
     Route::get('/', [DashboardController::class,'page']);
 });
