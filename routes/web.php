@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Authcontroller;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SocialController;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +48,12 @@ Route::prefix('admin')->middleware('verifytoken')->group(function () {
     Route::get('about',[AboutController::class,'page']);
 
 
+    // Cetificate Route
+    Route::get('certificate',[CertificateController::class,'page']);
+    Route::get('certificate-list',[CertificateController::class,'certificateList']);
+    Route::get('certificate-by-id/{id}',[CertificateController::class,'certificateById']);
+    Route::post('certificate-create-update',[CertificateController::class,'certificateCreateUpdate']);
+    Route::post('certificate-delete',[CertificateController::class,'certificateDelete']);
 
     // Social Route
     Route::get('social',[SocialController::class,'page']);

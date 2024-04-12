@@ -16,6 +16,10 @@
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-person"></i></div>
                     About
                 </a>
+                <a class="nav-link" href="{{url('/admin/certificate')}}">
+                    <div class="sb-nav-link-icon"><i class="fa-solid fa-certificate"></i></div>
+                    Certificates
+                </a>
                 <a class="nav-link" href="index.html">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-shield"></i></div>
                     Projects
