@@ -5,6 +5,7 @@ use App\Http\Controllers\Authcontroller;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SocialController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,10 @@ Route::prefix('admin')->middleware('verifytoken')->group(function () {
 
 
     Route::get('/', [DashboardController::class,'page']);
+
+
+    // Home Controller
+    Route::get("home",[HomeController::class,'page']);
 
 
     // Blog Route
