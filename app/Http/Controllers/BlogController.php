@@ -35,12 +35,21 @@ class BlogController extends Controller
         $blogId = $request->input("blog_id");
         $filePath = $request->input('file_path');
         $title = $request->input('title');
+        $is_social = $request->input('is_social');
+        $social_link = $request->input('social_link');
         $description = $request->input('description');
+       
 
         $image = $request->file("image");
+        if($is_social == ''){
+            return response()->json([
+                "status" => "failed",
+                "message" => "Is Social Not Found",
+            ]);
+        }
 
 
-        if($blogId){
+        if($blogId != ''){
 
             if($request->hasFile("image")){
 
@@ -67,6 +76,8 @@ class BlogController extends Controller
                 Blog::where("id","=",$blogId)->update([
                     "title" => $title,
                     "description" => $description,
+                    "is_social" => $is_social,
+                    "social_link" => $social_link
                 ]);
                 return response()->json([
                     "status" => "success",
@@ -86,6 +97,8 @@ class BlogController extends Controller
                  "title" => $title,
                  "thumbnail" => $imageName,
                  "description" => $description,
+                 "is_social" => $is_social,
+                 "social_link" => $social_link
              ]);
  
              if($blogCreate){

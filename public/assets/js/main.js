@@ -1,31 +1,32 @@
-
-function showLoader(){
-    document.getElementById("loader").classList.remove("d-none")
+function showLoader() {
+    let loader = document.getElementById("loader");
+    loader.classList.remove("d-none");
 }
 
-function hideLoader(){
-    document.getElementById("loader").classList.add("d-none")
+function hideLoader() {
+    let loader = document.getElementById("loader");
+    loader.classList.add("d-none");
 }
 
-function successToast(msg){
+function successToast(msg) {
     Toastify({
-        text: msg,    
-        gravity: "bottom", 
-        position: "center", 
+        text: msg,
+        gravity: "bottom",
+        position: "center",
         className: "mb-5",
         style: {
-          background: "green",
+            background: "green",
         },
-      }).showToast();
+    }).showToast();
 }
-function errorToast(msg){
+function errorToast(msg) {
     Toastify({
-        text: msg,    
-        gravity: "bottom", 
-        position: "center", 
+        text: msg,
+        gravity: "bottom",
+        position: "center",
         className: "mb-5",
         style: {
-          background: "red",
+            background: "red",
         },
-      }).showToast();
+    }).showToast();
 }

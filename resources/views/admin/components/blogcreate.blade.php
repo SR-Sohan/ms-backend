@@ -11,9 +11,16 @@
             <input class="d-none" type="number" name="blog_id" id="blog_id">
             <input class="d-none" type="text" name="file_path" id="file_path">
             <div class="mb-3">
-                <label for="name">Title</label>
-                <input type="text" name="title" id="title" class="form-control">
-            </div>                        
+                <label for="is_social">Is Social</label>
+                <select name="is_social" id="is_social" class="form-select">
+                  <option value="0">No</option>
+                  <option value="1">Yes</option>
+                </select>
+            </div>      
+            <div class="mb-3">
+              <label for="name">Title</label>
+              <input type="text" name="title" id="title" class="form-control">
+            </div>                    
             <div class="mb-3">
               <img class="w-25" src="{{asset('assets/images/default.jpg')}}" alt="" id="preview">
               <br>
@@ -21,9 +28,13 @@
               <input oninput="preview.src=window.URL.createObjectURL(this.files[0])" type="file" name="image" id="image">
             </div>
 
-            <div class="mb-3">
+            <div id="textArea" class="mb-3">
                 <textarea wdith=100% name="description" id="description" cols="30" rows="10"></textarea>
             </div>
+            <div id="socialArea" class="mb-3 d-none">
+              <label for="social_link">Socail LInk</label>
+              <input type="text" name="social_link" id="social_link" class="form-control">
+          </div>  
           </form>
         </div>
         <div class="modal-footer">
@@ -37,6 +48,23 @@
   <script>
 
     $(document).ready(function() {
+
+      $('#is_social').change(function() {
+            var selectedValue = $(this).val();
+
+            if (selectedValue == '1') {
+                $('#socialArea').removeClass('d-none'); 
+                $('#textArea').addClass('d-none');   // Hide field 2
+            } else if (selectedValue == '0') {
+                $('#socialArea').addClass('d-none');   // Hide field 1
+                $('#textArea').removeClass('d-none'); // Show field 2
+            } else {
+                // If no valid selection, hide both fields
+                $('#textArea').addClass('d-none');
+                $('#socialArea').addClass('d-none');
+            }
+        });
+
     $('#description').summernote({
         height: 550,
         toolbar: [
@@ -68,24 +96,30 @@
     async function handleSubmit(){
       let blog_id = $("#blog_id").val();
       let file_path = $("#file_path").val();
+      let is_social = $("#is_social").val();
+      let social_link = $("#social_link").val();
       let title = $("#title").val();
       let description = $("#description").val();
       let image = $('#image')[0].files[0]
 
+
+      console.log(is_social,social_link);
+      
+
        if(title === ""){
         errorToast("Title is required")
-      }else if(description === ""){
-        errorToast("description is required")
       }else{
 
         let formData = new FormData();
         formData.append("blog_id",blog_id)
         formData.append("file_path",file_path)
+        formData.append("is_social",is_social)
+        formData.append("social_link",social_link)
         formData.append("title",title)
         formData.append("description",description)
         formData.append("image",image)
 
-        // console.log(formData);
+        console.log(formData);
 
         let config = {
                 headers: {
